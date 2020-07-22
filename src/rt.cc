@@ -8,8 +8,8 @@
 
 void rt::print_coze(const coze &z) {
   std::cout << std::setw(6) << z.total
-    << " | " << std::setw(6) << z.invalid
-    << " | " << std::setw(8) << fs::file_size(z.file)
+    << " | " << std::setw(12) << z.invalid
+    << " | " << std::setw(12) << fs::file_size(z.file)
     << " | " << z.file.string()
     << std::endl;
 }
