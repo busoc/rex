@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
 
   auto args = parser.arguments();
   if (type == "hrdl" || type == "vmu") {
-    // hrdl::check_files(args, dry);
+    hrdl::check_files(args, dry);
   } else if (type == "pth" || type == "pt" || type == "tm") {
     pth::check_files(args, dry);
   } else if (type == "pdh" || type == "pd") {

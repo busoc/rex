@@ -14,6 +14,8 @@ INC_WALK=../walk/src
 
 all: clean list merge shuf split check
 
+default: all
+
 # ------------------------------------------------------------------------------
 clean: cleanbin cleanobj
 
@@ -109,4 +111,5 @@ $(OBJDIR)/pdh.o: mkobj
 	$(CC) $(CCFLAGS) -o $@ -c $(INC_REX)/pdh.cc -I $(INC_REX) -I $(INC_EVER)
 
 $(OBJDIR)/hrdl.o: mkobj
-	$(CC) $(CCFLAGS) -o $@ -c $(INC_REX)/hrdl.cc -I $(INC_REX) -I $(INC_EVER)
+	$(CC) $(CCFLAGS) -o $@ -c $(INC_REX)/hrdl.cc \
+						-I $(INC_REX) -I $(INC_EVER) -I $(INC_WALK)
