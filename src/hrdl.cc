@@ -337,16 +337,13 @@ void hrdl::check_file(std::string file, bool dry) {
   walk::walk_files(file, [](fs::path p, fs::file_status s) {
     rt::coze z{.file = p};
     reader in{p};
-    auto bytes = fs::file_size(p);
     while(auto p = in.next()) {
       int size = p->archive.size - sizeof(p->archive);
       if (size != p->archive.length+4) {
-        z.invalid = bytes;
-        break;
+        z.invalid++;
       }
       in.skip(p->remain());
       z.total++;
-      bytes -= p->archive.size;
     }
     rt::print_coze(z);
   });
