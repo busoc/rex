@@ -329,7 +329,7 @@ int pdh::merge_file(fs::path dir, fs::path file, bool keep) {
 
 int pdh::merge_files(fs::path dir, std::vector<std::string> files, bool keep) {
   if (!fs::is_directory(dir)) {
-    return 0;
+    fs::create_directories(dir);
   }
   int total = 0;
   for (auto f: files) {
