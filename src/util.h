@@ -15,8 +15,11 @@ namespace util {
   }
 
   namespace time {
-    const ever::instant unix{1970, 1, 1};
-    const ever::instant gps{1980, 1, 6};
+    const ever::instant unix{0};
+    const ever::instant gps{315964800};
+    // two lines bellow cause a segmentation fault???
+    // const ever::instant unix{1970, 1, 1};
+    // const ever::instant gps{1980, 1, 6};
     const long long delta = gps.diff(unix);
 
     #pragma pack(push, 1)
