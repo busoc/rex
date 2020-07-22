@@ -3,6 +3,8 @@
 #include <iomanip>
 #include "pth.h"
 #include "util.h"
+#include "rt.h"
+#include "walk.h"
 
 namespace fs = std::filesystem;
 
@@ -137,7 +139,6 @@ pth::reader::reader(fs::path file): in(file, std::ios::binary) {}
 
 pth::reader::~reader() {
   in.close();
-  // delete[] buffer;
 }
 
 std::optional<pth::packet_info> pth::reader::next() {
@@ -277,4 +278,26 @@ int pth::merge_files(fs::path dir, std::vector<std::string> files, bool keep) {
     total += merge_file(dir, f, keep);
   }
   return total;
+}
+
+void pth::check_file(std::string file, bool dry) {
+  walk::walk_files(file, [](fs::path p, fs::file_status s) {
+    rt::coze z{.file = p};
+    reader in{p};
+    while(auto p = in.next()) {
+      int size = p->archive.size - sizeof(p->archive) - sizeof(p->ccsds);
+      if (size != p->ccsds.size()) {
+        z.invalid++;
+      }
+      z.total++;
+      in.skip(p->ccsds.size() - sizeof(p->esa));
+    }
+    rt::print_coze(z);
+  });
+}
+
+void pth::check_files(std::vector<std::string> files, bool dry) {
+  for (auto f: files) {
+    check_file(f, dry);
+  }
 }

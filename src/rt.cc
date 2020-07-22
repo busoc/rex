@@ -1,9 +1,18 @@
+#include <iostream>
 #include <chrono>
 #include <iomanip>
 #include <sstream>
 
 #include "rt.h"
 #include "walk.h"
+
+void rt::print_coze(const coze &z) {
+  std::cout << std::setw(6) << z.total
+    << " | " << std::setw(6) << z.invalid
+    << " | " << std::setw(8) << fs::file_size(z.file)
+    << " | " << z.file.string()
+    << std::endl;
+}
 
 rt::splitter::splitter(fs::path dir, unsigned count, std::string prefix):
   distrib(0, count-1),

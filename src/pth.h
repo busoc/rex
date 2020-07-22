@@ -40,6 +40,9 @@ namespace pth {
   int merge_file(fs::path dir, fs::path file, bool keep = false);
   int merge_files(fs::path dir, std::vector<std::string> files, bool keep = false);
 
+  void check_file(std::string file, bool dry = false);
+  void check_files(std::vector<std::string> files, bool dry = false);
+
   struct packet_info {
     header archive;
     ccsds_header ccsds;

@@ -1,6 +1,7 @@
 #ifndef __REX_RT__
 #define __REX_RT__
 
+#include <iomanip>
 #include <fstream>
 #include <random>
 #include <vector>
@@ -11,25 +12,22 @@ namespace fs = std::filesystem;
 
 namespace rt {
   struct poze {
-    unsigned siz;
-    unsigned pos;
-
-    ever::instant time;
-    unsigned id;
-    unsigned seq;
+    unsigned siz{0};
+    unsigned pos{0};
   };
 
-  // class packet_info {
-  // public:
-  //   virtual bool operator<(const packet_info &other) const = 0;
-  //   virtual bool operator==(const packet_info &other) const = 0;
-  //
-  //   virtual bool less(const packet_info &other) const = 0;
-  //   virtual bool equal(const packet_info &other) const = 0;
-  //
-  //   virtual fs::path location() const = 0;
-  //   virtual int remain() const = 0;
-  // };
+  struct coze {
+    unsigned total{0};
+    unsigned invalid{0};
+    unsigned size{0};
+    fs::path file;
+
+    bool is_valid() {
+      return invalid == 0;
+    }
+  };
+
+  void print_coze(const coze &z);
 
   class splitter {
   public:
