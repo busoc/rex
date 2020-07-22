@@ -341,6 +341,7 @@ void hrdl::check_file(std::string file, bool dry) {
       int size = p->archive.size - sizeof(p->archive);
       if (size != p->archive.length+4) {
         z.invalid++;
+        break;
       }
       in.skip(p->remain());
       z.total++;
