@@ -5,6 +5,7 @@
 #include <vector>
 #include <fstream>
 #include <filesystem>
+#include <optional>
 #include "util.h"
 
 namespace hrdl {

@@ -9,7 +9,7 @@ int main(int argc, char** argv) {
   bool help = false;
   bool version = false;
 
-  flag::Set parser("rexshuff");
+  flag::Set parser("rexshuf");
   parser.string_var(&dir, "d", "directory");
   parser.bool_var(&help, "h", "help");
   parser.bool_var(&version, "v", "version");
@@ -22,6 +22,7 @@ int main(int argc, char** argv) {
   }
   if (help) {
     std::cout << parser.help();
+    std::cout << std::endl;
     return 0;
   }
   if (version) {

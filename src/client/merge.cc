@@ -31,6 +31,7 @@ int main(int argc, char** argv) {
   }
   if (help) {
     std::cout << parser.help();
+    std::cout << std::endl;
     return 0;
   }
   if (version) {

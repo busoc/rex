@@ -5,7 +5,6 @@
 #include <filesystem>
 #include <fstream>
 #include "util.h"
-#include "rt.h"
 
 namespace pth {
   #pragma pack(push, 1)

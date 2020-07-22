@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
   bool help = false;
   bool version = false;
 
-  flag::Set parser("rt");
+  flag::Set parser("rtlist");
   parser.string_var(&type, "t", "type");
   parser.bool_var(&help, "h", "help");
   parser.bool_var(&version, "v", "version");
@@ -22,10 +22,14 @@ int main(int argc, char** argv) {
     std::cerr << e.what() << std::endl;
     std::cerr << parser.usage() << std::endl;
     return 1;
+  } catch(...) {
+    std::cerr << "unexpected error while parsing arguments" << std::endl;
+    return 1;
   }
 
   if (help) {
     std::cout << parser.help();
+    std::cout << std::endl;
     return 0;
   }
   if (version) {
