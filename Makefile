@@ -6,19 +6,19 @@ OBJDIR=objects
 BINDIR=bin
 
 INC_REX=src
-INC_FLAG=../flag/src/
+INC_FLAG=../flag/src
 INC_EVER=../ever/src
-INC_WALK=../walk/src/
+INC_WALK=../walk/src
 
 all: clean list merge shuf split
 
 clean: cleanbin cleanobj
 
 cleanbin:
-	rm $(BINDIR)/*
+	rm -f $(BINDIR)/*
 
 cleanobj:
-	rm $(OBJDIR)/*
+	rm -f $(OBJDIR)/*
 
 mkall: mkobj mkbin
 
@@ -33,7 +33,7 @@ list: mkall $(OBJDIR)/list.o $(OBJDIR)/util.o $(OBJDIR)/pth.o $(OBJDIR)/pdh.o $(
 	$(CC) $(CCFLAGS) $(LIBFLAGS) -o $(BINDIR)/rexlist $(OBJDIR)/list.o \
 					$(OBJDIR)/ever.o $(OBJDIR)/flag.o $(OBJDIR)/util.o \
 					$(OBJDIR)/pth.o $(OBJDIR)/pdh.o $(OBJDIR)/hrdl.o \
-					-I $(INC_REX) -I $(INC_FLAG)/ -I $(INC_EVER) -I $(INC_WALK)
+					-I $(INC_FLAG)/ -I $(INC_EVER) -I $(INC_WALK) -I $(INC_REX)
 
 merge: mkall $(OBJDIR)/merge.o $(OBJDIR)/util.o $(OBJDIR)/pth.o $(OBJDIR)/pdh.o $(OBJDIR)/hrdl.o \
 		$(OBJDIR)/flag.o $(OBJDIR)/ever.o
